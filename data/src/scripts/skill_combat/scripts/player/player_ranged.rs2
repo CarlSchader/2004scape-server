@@ -43,6 +43,7 @@ if (~player_npc_hit_roll(%damagetype) = true) {
             if(npc_type = nezikchened) {
                 %com_maxhit = add(%com_maxhit, 5);
             }
+            if (npc_stat(defence) >= npc_basestat(defence)) npc_statsub(defence, 0, 5);
         } else {
              %com_maxhit = 0;
         }
@@ -129,6 +130,6 @@ return(~npc_projectile(coord, npc_uid, oc_param($ammo, proj_travel), 40, 36, 32,
 if (random($chance) ! 0 | $chance = ^true) {
     world_delay($delay);
     if (map_blocked(npc_coord) = false) {
-        obj_add(npc_coord, enum(obj, namedobj, ranged_ammo, $ammo), 1, 100);
+        obj_add(npc_coord, enum(obj, namedobj, ranged_ammo, $ammo), 1, 200);
     }
 }
